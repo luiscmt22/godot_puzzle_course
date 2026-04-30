@@ -5,12 +5,18 @@ public partial class Main : Node2D
 {
     private Sprite2D _sprite;
     private PackedScene _building;
+    private Button _placeBuildingButton;
     
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
         _building = GD.Load<PackedScene>("res://scenes/Building/Building.tscn");
 		_sprite = GetNode<Sprite2D>("Cursor");
+        _placeBuildingButton = GetNode<Button>("PlaceBuildingButton");
+        
+        _placeBuildingButton.Pressed += () => PlaceBuildingAtMousePosition();
+        
+        
 	}
 
     public override void _UnhandledInput(InputEvent evt)
